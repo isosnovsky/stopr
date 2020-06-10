@@ -1,10 +1,15 @@
+import printMe from './print';
 import './style.css';
+import ic from './icon.png';
 
 function component() {
     const element = document.createElement('div');
-    // Lodash, currently included via a script, is required for this line to work
+
     element.innerHTML = 'Атятя';
     element.classList.add('hello');
+
+    element.innerHTML = 'ОБАНА!!!!';
+    element.onclick = printMe;
 
     return element;
 }
