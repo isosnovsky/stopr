@@ -6,17 +6,16 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
-    entry: {
-        app: './src/index.js',
-        print: './src/print.js',
-    },
+    entry: './src/index.tsx',
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/assets/',
+        publicPath: 'assets/'
     },
     devServer: {
-        contentBase: './dist',
+        contentBase: '/dist',
+        publicPath: '/assets/',
+        writeToDisk: true
     },
     plugins: [
         new CleanWebpackPlugin({cleanStaleWebpackAssets: false}),
@@ -46,6 +45,7 @@ module.exports = {
                     'file-loader',
                 ],
             },
+            { test: /\.tsx$/, exclude: /node_modules/, loader: "babel-loader" }
         ],
     },
 };
