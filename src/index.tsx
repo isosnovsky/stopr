@@ -1,14 +1,3 @@
-import "core-js/stable";
-import "regenerator-runtime/runtime";
-import * as React from 'react';
+import 'react-hot-loader'
+import { hot } from 'react-hot-loader/root';
 
-interface FooProp {
-    name: string;
-    X: number;
-    Y: number;
-}
-
-
-function ComponentFoo(prop: FooProp) {
-    return <span className={'d'}> {prop} </span>;
-}
