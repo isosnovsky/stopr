@@ -10,17 +10,18 @@ module.exports = {
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: 'assets/'
     },
     devServer: {
         contentBase: '/dist',
-        publicPath: '/assets/',
-        writeToDisk: true
+        writeToDisk: true,
+        hot: true,
     },
+    resolve: { extensions: [".ts", ".tsx", ".js", ".jsx"] },
     plugins: [
-        new CleanWebpackPlugin({cleanStaleWebpackAssets: false}),
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Output Management',
+            title: 'HMR + RHL',
+            template: 'index.html'
         }),
         new ManifestPlugin(),
     ],
@@ -45,7 +46,7 @@ module.exports = {
                     'file-loader',
                 ],
             },
-            { test: /\.tsx$/, exclude: /node_modules/, loader: "babel-loader" }
+            {test: /\.tsx$/, exclude: /node_modules/, loader: "babel-loader"}
         ],
     },
 };

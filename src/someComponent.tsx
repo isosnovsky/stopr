@@ -1,21 +1,17 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
 import * as React from 'react';
+import { hot } from 'react-hot-loader';
 
 interface FooProp {
   name: string;
-  X: number;
-  Y: number;
 }
 
 
 function ComponentFoo(prop: FooProp) {
-  return <span className={'d'}> {prop} </span>;
+  return (
+    <div className={'44444423423423'}>
+      <span>{prop.name}</span>
+    </div>
+  )
 }
 
-if (module.hot) {
-  module.hot.accept('./print.js', function () {
-    console.log('Accepting the updated printMe module!');
-    printMe();
-  })
-}
+export default hot(module)(ComponentFoo);
