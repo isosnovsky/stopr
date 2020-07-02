@@ -1,30 +1,23 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
-    devtool: 'inline-source-map',
-    entry: './src/index.tsx',
+    entry: {
+        app: './src/index.tsx',
+    },
+    plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'Production',
+            template: 'index.html'
+        }),
+    ],
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
-    devServer: {
-        contentBase: '/dist',
-        writeToDisk: true,
-        hot: true,
-    },
     resolve: { extensions: [".ts", ".tsx", ".js", ".jsx"] },
-    plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            title: 'HMR + RHL',
-            template: 'index.html'
-        }),
-        new ManifestPlugin(),
-    ],
     module: {
         rules: [
             {
@@ -46,7 +39,7 @@ module.exports = {
                     'file-loader',
                 ],
             },
-            {test: /\.tsx$/, exclude: /node_modules/, loader: "babel-loader"}
+            {test: /\.(js|jsx|tsx|ts)$/, exclude: /node_modules/, loader: "babel-loader"}
         ],
     },
 };

@@ -1,8 +1,19 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-import ComponentFoo from './someComponent';
+import ComponentFoo from './features/auth/someComponent';
 
-ReactDOM.render(<ComponentFoo name='обана??????' />, document.getElementById('root'));
+import configureStore from './configureStore'
+
+const store = configureStore({})
+
+const rootElement = document.getElementById('root')
+ReactDOM.render(
+  <Provider store={store}>
+    <ComponentFoo />
+  </Provider>,
+  rootElement
+)
